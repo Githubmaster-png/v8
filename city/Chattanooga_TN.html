@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-City Investment Property Reports</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/styles.css">
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="../index.html" class="logo">
+                <img src="../static/images/sunsphere_logo.png" alt="Multi-City Investment Property Report" loading="lazy">
+            </a>
+            <button class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
+            <div class="nav-links">
+                <a href="../index.html">Home</a>
+                <a href="../about.html">About</a>
+                <a href="../how-it-works.html">How It Works</a>
+                <a href="../sample-report.html">Sample Report</a>
+                <a href="../contact.html">Contact</a>
+                <a href="../cities.html">Cities</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        
+<section class="hero">
+    <div class="container">
+        <h1 id="city-name">Chattanooga, TN</h1>
+        <p>Detailed Investment Opportunities</p>
+    </div>
+</section>
+
+<section class="content-section container">
+    <div id="city-details">
+        
+            <p>No data available for this city. Please check back later for updates.</p>
+        
+    </div>
+</section>
+
+<section id="signup" class="signup-section container">
+    <h2>Sign Up for Our Latest Report</h2>
+    <div id="emailoctopus-form">
+        <div class="signup-content">
+            <h3>Sign up for the FREE Multi-City Investment Property Report!</h3>
+            <p>Your Data-Driven Guide to Profitable Properties</p>
+            <p>Subscribe and receive:</p>
+            <ul class="feature-list">
+                <li>A free weekly hotsheet featuring top investment homes</li>
+                <li>Insights from our custom AI-powered algorithm analyzing market trends</li>
+                <li>Focus on cash flow opportunities</li>
+            </ul>
+        </div>
+        <script async src="https://eocampaign1.com/form/53bbfecc-3324-11ef-95d9-03335d1eab70.js" data-form="53bbfecc-3324-11ef-95d9-03335d1eab70"></script>
+    </div>
+    <a href="properties_report_example.pdf" class="download-button">Download Example Report</a>
+</section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>Interested in custom reports or collaboration? Contact us to expand your investment opportunities in multiple cities.</p>
+            <p>Email: <a href="mailto:contact@investmentpropertyreport.com">contact@investmentpropertyreport.com</a></p>
+            <p>Phone: (865) 622-7832</p>
+            <p>Address: 177 Cedar Circle, Powell, TN 37849</p>
+            <p><small>We respect your privacy. Unsubscribe at any time.</small></p>
+            <p>&copy; <script>document.write(new Date().getFullYear())</script> Properity Properties LLC. All rights reserved.</p>
+        </div>
+    </footer>
+    <script src="../static/js/menu.js"></script>
+    <script src="../static/js/city_data.js"></script>
+    
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const images = document.querySelectorAll('.gallery-image');
+        const dots = document.querySelectorAll('.gallery-dot');
+        let currentIndex = 0;
+        let intervalId;
+        
+        function showImage(index) {
+            images.forEach(img => img.classList.remove('active'));
+            dots.forEach(d => d.classList.remove('active'));
+            images[index].classList.add('active');
+            dots[index].classList.add('active');
+        }
+        
+        function nextImage() {
+            currentIndex = (currentIndex + 1) % images.length;
+            showImage(currentIndex);
+        }
+        
+        function startAutoScroll() {
+            intervalId = setInterval(nextImage, 5000); // Change image every 5 seconds
+        }
+        
+        function stopAutoScroll() {
+            clearInterval(intervalId);
+        }
+        
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                currentIndex = index;
+                showImage(currentIndex);
+                stopAutoScroll();
+                startAutoScroll();
+            });
+        });
+        
+        const imageGallery = document.querySelector('.image-gallery');
+        if (imageGallery) {
+            imageGallery.addEventListener('mouseenter', stopAutoScroll);
+            imageGallery.addEventListener('mouseleave', startAutoScroll);
+        }
+        
+        startAutoScroll();
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-City Investment Property Reports</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="static/css/styles.css">
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="index.html" class="logo">
+                <img src="static/images/sunsphere_logo.png" alt="Multi-City Investment Property Report" loading="lazy">
+            </a>
+            <button class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="how-it-works.html">How It Works</a>
+                <a href="sample-report.html">Sample Report</a>
+                <a href="contact.html">Contact</a>
+                <a href="cities.html">Cities</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        
+<section class="hero">
+    <div class="container">
+        <h1>Sample Report</h1>
+        <p>Get a Glimpse of Our Comprehensive Investment Analysis</p>
+    </div>
+</section>
+
+<section class="content-section container">
+    <h2>Example Property Analysis</h2>
+    <div id="sample-property"></div>
+
+    <h3>Neighborhood Analysis</h3>
+    <p>This section would contain a detailed analysis of the neighborhood, including recent trends, amenities, and potential for growth.</p>
+
+    <h3>Investment Potential</h3>
+    <p>Here, we would provide an in-depth analysis of the investment potential, including projected cash flow, potential for appreciation, and any risks or opportunities specific to this property.</p>
+
+    <a href="properties_report_example.pdf" class="btn">Download Full Sample Report</a>
+</section>
+
+<section id="signup" class="signup-section container">
+    <h2>Sign Up for Our Latest Report</h2>
+    <div id="emailoctopus-form">
+        <div class="signup-content">
+            <h3>Sign up for the FREE Multi-City Investment Property Report!</h3>
+            <p>Your Data-Driven Guide to Profitable Properties</p>
+            <p>Subscribe and receive:</p>
+            <ul class="feature-list">
+                <li>A free weekly hotsheet featuring top investment homes</li>
+                <li>Insights from our custom AI-powered algorithm analyzing market trends</li>
+                <li>Focus on cash flow opportunities</li>
+            </ul>
+        </div>
+        <script async src="https://eocampaign1.com/form/53bbfecc-3324-11ef-95d9-03335d1eab70.js" data-form="53bbfecc-3324-11ef-95d9-03335d1eab70"></script>
+    </div>
+    <a href="properties_report_example.pdf" class="download-button">Download Example Report</a>
+</section>
+
+<script src="static/js/city_data.js"></script>
+<script>
+    const sampleProperty = document.getElementById('sample-property');
+    if (typeof cityData !== 'undefined' && Object.keys(cityData).length > 0) {
+        const [city, data] = Object.entries(cityData)[0];
+        const bestDeal = data.best_deal;
+        let imagesHtml = '';
+        if (bestDeal.images && bestDeal.images.length > 0) {
+            imagesHtml = `
+                <div class="image-gallery">
+                    ${bestDeal.images.map((image, index) => `
+                        <img src="${image['800x600']}" alt="${city} property image ${index + 1}" class="gallery-image ${index === 0 ? 'active' : ''}" loading="lazy">
+                    `).join('')}
+                    <div class="gallery-nav">
+                        ${bestDeal.images.map((_, index) => `
+                            <button class="gallery-dot ${index === 0 ? 'active' : ''}" data-index="${index}"></button>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        } else {
+            imagesHtml = '<p>No images available</p>';
+        }
+        
+        sampleProperty.innerHTML = `
+            <div class="city-card">
+                <h2>${city}</h2>
+                ${imagesHtml}
+                <div class="property-details">
+                    <p>Address: <a href="${bestDeal.zillowLink}" target="_blank">${bestDeal.address}</a></p>
+                    <p>Price: $${bestDeal.price.toLocaleString()}</p>
+                    <p>Projected Cash Flow: $${bestDeal.cashFlow.toLocaleString()}/month</p>
+                    <p>${bestDeal.bedrooms} beds, ${bestDeal.bathrooms} baths, ${bestDeal.sqft} sqft</p>
+                </div>
+            </div>
+        `;
+        
+        // Add gallery functionality
+        const images = sampleProperty.querySelectorAll('.gallery-image');
+        const dots = sampleProperty.querySelectorAll('.gallery-dot');
+        
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                images.forEach(img => img.classList.remove('active'));
+                dots.forEach(d => d.classList.remove('active'));
+                images[index].classList.add('active');
+                dot.classList.add('active');
+            });
+        });
+    } else {
+        sampleProperty.innerHTML = '<p>No sample property available at this time.</p>';
+    }
+</script>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>Interested in custom reports or collaboration? Contact us to expand your investment opportunities in multiple cities.</p>
+            <p>Email: <a href="mailto:contact@investmentpropertyreport.com">contact@investmentpropertyreport.com</a></p>
+            <p>Phone: (865) 622-7832</p>
+            <p>Address: 177 Cedar Circle, Powell, TN 37849</p>
+            <p><small>We respect your privacy. Unsubscribe at any time.</small></p>
+            <p>&copy; <script>document.write(new Date().getFullYear())</script> Properity Properties LLC. All rights reserved.</p>
+        </div>
+    </footer>
+    <script src="static/js/menu.js"></script>
+    <script src="static/js/city_data.js"></script>
+    
+</body>
+</html>
